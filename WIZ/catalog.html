@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catalog – WIZ SALES</title>
+
+  <link rel="stylesheet" href="assets/css/global.css">
+  <link rel="icon" type="image/jpeg" href="https://files.catbox.moe/5fefg4.jpg">
+  <link rel="stylesheet" href="assets/css/catalog.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <style>
+    /* Mobile Menu Styles */
+    .mobile-menu-btn {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      display: none;
+    }
+    
+    .mobile-menu {
+      position: absolute;
+      top: 70px;
+      left: 0;
+      right: 0;
+      background: white;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      z-index: 1000;
+      border-radius: 0 0 20px 20px;
+    }
+    
+    .mobile-menu.hidden {
+      display: none;
+    }
+    
+    .mobile-menu a {
+      padding: 12px;
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      border-radius: 10px;
+    }
+    
+    .mobile-fab {
+      position: fixed;
+      bottom: 80px;
+      right: 20px;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: #6b7d3a;
+      color: white;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s ease;
+    }
+    
+    .mobile-action-panel {
+      position: fixed;
+      bottom: 140px;
+      right: 20px;
+      background: white;
+      border-radius: 16px;
+      padding: 0.5rem;
+      display: none;
+      flex-direction: column;
+      gap: 0.5rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      z-index: 1001;
+      min-width: 150px;
+    }
+    
+    .mobile-action-panel.active {
+      display: flex;
+    }
+    
+    .mobile-action-panel a {
+      padding: 12px 16px;
+      text-decoration: none;
+      color: #333;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-radius: 12px;
+    }
+    
+    .mobile-action-panel a:hover {
+      background: #f3f4f6;
+    }
+    
+    .mobile-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.5);
+      display: none;
+      z-index: 999;
+    }
+    
+    .mobile-overlay.active {
+      display: block;
+    }
+    
+    @media (max-width: 768px) {
+      .mobile-menu-btn {
+        display: block;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Floating Action Button -->
+  <button id="mobileActionBtn" class="mobile-fab">
+    <i class="fas fa-plus"></i>
+  </button>
+
+  <!-- Action Panel -->
+  <div id="mobileActionPanel" class="mobile-action-panel">
+    <a href="index.html"><i class="fas fa-home"></i> Home</a>
+    <a href="catalog.html"><i class="fas fa-store"></i> Catalog</a>
+    <a href="admin-login.html"><i class="fas fa-user-shield"></i> Admin</a>
+    <a href="https://wa.link/30mvhw"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+  </div>
+
+  <!-- Overlay -->
+  <div id="mobileOverlay" class="mobile-overlay"></div>
+
+  <!-- ================= NAVBAR ================= -->
+  <nav class="navbar glass-card">
+    <div class="nav-container">
+
+      <a href="index.html" class="brand">
+        <i class="fa-brands fa-shopify"></i>
+        <span>WIZ<span class="accent">SALES</span></span>
+      </a>
+
+      <div class="nav-links desktop-nav">
+        <a href="index.html">Home</a>
+        <a href="catalog.html" class="active">Catalog</a>
+        <a href="admin-login.html">Admin</a>
+      </div>
+
+      <button id="mobileMenuBtn" class="mobile-menu-btn">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu Panel -->
+  <div id="mobileMenu" class="mobile-menu hidden">
+    <a href="index.html">Home</a>
+    <a href="catalog.html">Catalog</a>
+    <a href="admin-login.html">Admin</a>
+    <a href="https://wa.link/30mvhw">WhatsApp</a>
+  </div>
+
+  <!-- ================= MAIN ================= -->
+  <main class="section">
+
+    <div class="container">
+
+      <!-- PAGE HEADER -->
+      <div class="page-header">
+        <h1>
+          <i class="fas fa-grid-2"></i>
+          Product Catalog
+        </h1>
+        <p>Browse all premium listings from verified sellers</p>
+      </div>
+
+      <!-- FILTER BAR -->
+      <div class="filter-bar glass-card">
+
+        <div class="filter-item">
+          <i class="fas fa-search"></i>
+          <input type="text" id="searchInput" placeholder="Search products...">
+        </div>
+
+        <div class="filter-item">
+          <select id="categoryFilter">
+            <option value="all">All Categories</option>
+          </select>
+        </div>
+
+        <div class="filter-item">
+          <select id="sortBy">
+            <option value="latest">Latest</option>
+            <option value="price-asc">Price: Low → High</option>
+            <option value="price-desc">Price: High → Low</option>
+          </select>
+        </div>
+
+      </div>
+
+      <!-- PRODUCTS GRID -->
+      <div id="productsGrid" class="catalog-grid"></div>
+
+    </div>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="footer">
+    <div class="container footer-grid">
+
+      <div class="footer-column">
+        <h3>WIZ SALES</h3>
+        <p>Premium catalog marketplace for modern commerce.</p>
+      </div>
+
+      <div class="footer-column">
+        <h4>Contact</h4>
+        <a href="mailto:wizsaleseverything@gmail.com">wizsaleseverything@gmail.com</a>
+        <a href="https://wa.link/30mvhw">WhatsApp Support</a>
+      </div>
+
+      <div class="footer-column">
+        <h4>MaouKnowsJava</h4>
+        <p></p>
+        <a href="https://daddymaou.github.io/maou/">Portfolio</a>
+      </div>
+   
+      <div class="footer-column">
+        <h4>Legal</h4>
+        <a href="#">Terms</a>
+        <a href="#">Privacy</a>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      © 2026 || MaouKnowsJava
+    </div>
+  </footer>
+
+  <script type="module" src="catalog.js"></script>
+  
+  <script>
+    // Simple mobile menu toggle - GUARANTEED WORKING
+    (function() {
+      const menuBtn = document.getElementById('mobileMenuBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      const actionBtn = document.getElementById('mobileActionBtn');
+      const actionPanel = document.getElementById('mobileActionPanel');
+      const overlay = document.getElementById('mobileOverlay');
+      
+      if (menuBtn && mobileMenu) {
+        menuBtn.onclick = function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          mobileMenu.classList.toggle('hidden');
+        };
+      }
+      
+      if (actionBtn && actionPanel && overlay) {
+        actionBtn.onclick = function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          actionPanel.classList.toggle('active');
+          overlay.classList.toggle('active');
+        };
+        
+        overlay.onclick = function() {
+          actionPanel.classList.remove('active');
+          overlay.classList.remove('active');
+        };
+      }
+      
+      // Close menu when clicking outside
+      document.addEventListener('click', function(event) {
+        if (mobileMenu && !mobileMenu.contains(event.target) && menuBtn && !menuBtn.contains(event.target)) {
+          mobileMenu.classList.add('hidden');
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

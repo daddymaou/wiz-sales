@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Product – WIZ SALES</title>
+
+  <link rel="stylesheet" href="assets/css/global.css">
+  <link rel="icon" type="image/jpeg" href="https://files.catbox.moe/5fefg4.jpg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+  
+  <style>
+    /* Product Detail Page - Matching Global Design */
+    .product-nav {
+      position: sticky;
+      top: 1rem;
+      z-index: 1000;
+      margin: 1rem auto;
+      width: min(100% - 2rem, var(--container-width));
+      padding: 0.8rem 1.5rem;
+      background: var(--bg-glass);
+      backdrop-filter: blur(18px);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--border-radius-md);
+      box-shadow: var(--glass-shadow);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .product-nav a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 500;
+      transition: var(--transition-fast);
+      color: var(--text-dark);
+      text-decoration: none;
+    }
+    
+    .product-nav a:hover {
+      color: var(--accent);
+    }
+    
+    .nav-right {
+      display: flex;
+      gap: 1.5rem;
+    }
+    
+    .product-container {
+      max-width: var(--container-width);
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    
+    .product-gallery {
+      background: white;
+      border-radius: var(--border-radius-md);
+      overflow: hidden;
+      box-shadow: 0 18px 40px rgba(15,23,42,0.06);
+    }
+    
+    .product-gallery img {
+      width: 100%;
+      height: 450px;
+      object-fit: cover;
+    }
+    
+    .product-info {
+      background: white;
+      border-radius: var(--border-radius-md);
+      padding: 2rem;
+      box-shadow: 0 18px 40px rgba(15,23,42,0.06);
+    }
+    
+    #productName {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.02em;
+      color: var(--text-dark);
+    }
+    
+    .price {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    
+    .stock {
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #e5e7eb;
+    }
+    
+    .description {
+      color: var(--text-gray);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+    
+    .product-actions {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+      color: white;
+      flex: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      padding: 14px 28px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+      text-decoration: none;
+      border: none;
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 35px rgba(107, 125, 58, 0.35);
+    }
+    
+    .btn-secondary {
+      border: 1px solid #e5e7eb;
+      background: white;
+      color: var(--text-dark);
+      flex: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      padding: 14px 28px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+    }
+    
+    .btn-secondary:hover {
+      background: #f9fafb;
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    
+    .qr-section {
+      grid-column: span 2;
+      background: white;
+      border-radius: var(--border-radius-md);
+      padding: 2rem;
+      text-align: center;
+      box-shadow: 0 18px 40px rgba(15,23,42,0.06);
+    }
+    
+    .qr-section #qrcode {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 0.75rem;
+    }
+    
+    .qr-section p {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+    
+    @media (max-width: 992px) {
+      .product-container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      
+      .qr-section {
+        grid-column: span 1;
+      }
+      
+      .product-gallery img {
+        height: 350px;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .product-nav {
+        margin: 0.5rem auto;
+        padding: 0.6rem 1rem;
+      }
+      
+      .product-container {
+        padding: 0 1rem;
+      }
+      
+      .product-info {
+        padding: 1.5rem;
+      }
+      
+      #productName {
+        font-size: 1.5rem;
+      }
+      
+      .price {
+        font-size: 1.6rem;
+      }
+      
+      .product-actions {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav class="product-nav glass-card">
+    <a href="index.html">
+      <i class="fas fa-arrow-left"></i> Back
+    </a>
+    <div class="nav-right">
+      <a href="catalog.html"><i class="fas fa-store"></i> Catalog</a>
+    </div>
+  </nav>
+
+  <!-- PRODUCT CONTAINER -->
+  <main class="product-container">
+
+    <!-- IMAGE GALLERY -->
+    <div class="product-gallery">
+      <img id="productImage" src="https://via.placeholder.com/600x450?text=Loading" alt="Product image">
+    </div>
+
+    <!-- PRODUCT INFO -->
+    <div class="product-info">
+      <h1 id="productName">Loading...</h1>
+      <div id="productPrice" class="price">--</div>
+      <div id="productStock" class="stock">--</div>
+      <p id="productDesc" class="description">Loading description...</p>
+
+      <div class="product-actions">
+        <a id="whatsappBuyBtn" target="_blank" class="btn-primary">
+          <i class="fab fa-whatsapp"></i> Buy on WhatsApp
+        </a>
+        <button id="shareBtn" class="btn-secondary">
+          <i class="fas fa-share-alt"></i> Share
+        </button>
+      </div>
+    </div>
+
+    <!-- QR SECTION -->
+    <div class="qr-section">
+      <div id="qrcode"></div>
+      <p>Scan QR code to view this product on your phone</p>
+    </div>
+
+  </main>
+
+  <!-- Mobile Bottom Nav -->
+  <div class="mobile-bottom-nav">
+    <a href="index.html">
+      <i class="fas fa-home"></i>
+      <span>Home</span>
+    </a>
+    <a href="catalog.html">
+      <i class="fas fa-store"></i>
+      <span>Catalog</span>
+    </a>
+    <a href="admin-login.html">
+      <i class="fas fa-user-shield"></i>
+      <span>Admin</span>
+    </a>
+  </div>
+
+  <script type="module">
+    import { db } from './firebase-init.js';
+    import { doc, getDoc } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-firestore.js";
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get('id');
+
+    async function loadProduct() {
+      if (!productId) {
+        document.body.innerHTML = '<div class="container" style="padding: 4rem; text-align: center;">❌ No product ID specified.</div>';
+        return;
+      }
+      
+      try {
+        const docRef = doc(db, "products", productId);
+        const docSnap = await getDoc(docRef);
+        
+        if (docSnap.exists()) {
+          const p = docSnap.data();
+          
+          let imageUrl = 'https://via.placeholder.com/600x450?text=No+Image';
+          if (p.images) {
+            if (Array.isArray(p.images) && p.images.length > 0) {
+              imageUrl = p.images[0];
+            } else if (typeof p.images === 'string') {
+              imageUrl = p.images;
+            }
+          }
+          
+          const hasDiscount = p.discount && p.discount > 0;
+          const discountedPrice = hasDiscount ? p.price - (p.price * p.discount / 100) : p.price;
+          
+          document.getElementById('productName').innerText = p.name;
+          document.getElementById('productPrice').innerHTML = hasDiscount 
+            ? `<span class="price"><span style="color: var(--accent);">₦${discountedPrice.toFixed(2)}</span> <span style="font-size: 1rem; color: var(--text-muted); text-decoration: line-through;">₦${p.price}</span></span>`
+            : `<span class="price">₦${p.price}</span>`;
+          document.getElementById('productDesc').innerText = p.description || 'No description provided.';
+          document.getElementById('productStock').innerHTML = p.stock > 0 
+            ? `<span style="color: var(--success);"><i class="fas fa-check-circle"></i> In Stock (${p.stock} available)</span>` 
+            : '<span style="color: var(--danger);"><i class="fas fa-times-circle"></i> Out of stock</span>';
+          
+          const productImage = document.getElementById('productImage');
+          if (productImage) {
+            productImage.src = imageUrl;
+            productImage.alt = p.name;
+            productImage.onerror = () => {
+              productImage.src = 'https://via.placeholder.com/600x450?text=Image+Not+Found';
+            };
+          }
+          
+          document.title = `${p.name} – WIZ SALES`;
+          
+          const whatsappMsg = `Hello%2C%20I%20want%20to%20buy%20${encodeURIComponent(p.name)}%20for%20₦${hasDiscount ? discountedPrice : p.price}.%20Product%3A%20${window.location.href}`;
+          const whatsappBtn = document.getElementById('whatsappBuyBtn');
+          if (whatsappBtn) {
+            whatsappBtn.href = `https://wa.me/2349161685221?text=${whatsappMsg}`;
+          }
+          
+          const shareBtn = document.getElementById('shareBtn');
+          if (shareBtn) {
+            shareBtn.addEventListener('click', () => {
+              if (navigator.share) {
+                navigator.share({ title: p.name, url: window.location.href });
+              } else {
+                navigator.clipboard.writeText(window.location.href);
+                alert('Link copied to clipboard!');
+              }
+            });
+          }
+          
+          if (typeof QRCode !== 'undefined') {
+            const qrDiv = document.getElementById('qrcode');
+            if (qrDiv) {
+              qrDiv.innerHTML = '';
+              new QRCode(qrDiv, { 
+                text: window.location.href, 
+                width: 128, 
+                height: 128 
+              });
+            }
+          }
+          
+        } else {
+          document.body.innerHTML = '<div class="container" style="padding: 4rem; text-align: center;">❌ Product not found.</div>';
+        }
+      } catch (error) {
+        console.error('Error loading product:', error);
+        document.body.innerHTML = '<div class="container" style="padding: 4rem; text-align: center; color: var(--danger);">❌ Failed to load product. Please try again.</div>';
+      }
+    }
+
+    loadProduct();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,106 @@
+/* -----------------------------------------
+   WIZ SALES – Modern UI Styles
+----------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&display=swap');
+
+* {
+  font-family: 'Inter', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
+
+/* Skeleton loading */
+.skeleton {
+  background: linear-gradient(90deg, #e2e8f0 25%, #f8fafc 50%, #e2e8f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.2s infinite linear;
+}
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Toast notification */
+.toast-message {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: #1e293b;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 40px;
+  font-weight: 500;
+  z-index: 9999;
+  animation: slideUp 0.3s ease;
+  box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Product card hover */
+.product-card {
+  transition: all 0.25s cubic-bezier(0.2, 0, 0, 1);
+}
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 25px 40px -12px rgba(0,0,0,0.15);
+}
+
+/* Admin dark mode */
+.admin-dark {
+  background: #0f0f12;
+  color: #e4e4e7;
+}
+.admin-dark .card-dark {
+  background: #1a1a24;
+  border: 1px solid #2a2a35;
+}
+
+/* Hide scrollbar for categories slider */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Swiper buttons customization */
+.swiper-button-next, .swiper-button-prev {
+  color: #000;
+  background: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.swiper-button-next:after, .swiper-button-prev:after {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Form styles for admin */
+.input-dark {
+  background: #1a1a24;
+  border: 1px solid #2a2a35;
+  color: #e4e4e7;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+}

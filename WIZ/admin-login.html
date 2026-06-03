@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Admin Login – WIZ SALES</title>
+
+  <link rel="stylesheet" href="assets/css/global.css">
+  <link rel="icon" type="image/jpeg" href="https://files.catbox.moe/5fefg4.jpg">
+  <link rel="stylesheet" href="assets/css/admin-login.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body class="admin-login-body">
+
+  <!-- GO BACK -->
+  <a href="index.html" class="go-back-btn">
+    <i class="fas fa-arrow-left"></i>
+    
+  </a>
+
+  <div class="login-wrapper">
+
+    <!-- LEFT BRAND PANEL -->
+    <div class="login-brand">
+
+      <div class="brand-logo">
+        <i class="fa-brands fa-shopify"></i>
+        <span>WIZ SALES</span>
+      </div>
+
+      <p>
+        Secure admin access for managing products, orders, and analytics.
+      </p>
+
+      <ul class="login-features">
+        <li><i class="fas fa-shield-alt"></i> Firebase Authentication</li>
+        <li><i class="fas fa-database"></i> Real-time Database</li>
+        <li><i class="fas fa-chart-line"></i> Sales Analytics</li>
+      </ul>
+
+    </div>
+
+    <!-- LOGIN BOX -->
+    <div class="admin-glass">
+
+      <h1>
+        <i class="fas fa-lock"></i>
+        Admin Login
+      </h1>
+
+      <form id="loginForm">
+
+        <input type="email" id="email" placeholder="Email Address" required>
+
+        <input type="password" id="password" placeholder="Password" required>
+
+        <button type="submit" class="btn-primary">
+          <i class="fas fa-sign-in-alt"></i>
+          Login
+        </button>
+
+        <div id="errorMsg"></div>
+
+      </form>
+
+      <div class="login-footer">
+        © 2026 || MaouKnowsJava
+      </div>
+
+    </div>
+
+  </div>
+
+  <script type="module" src="admin.js"></script>
+
+</body>
+</html>

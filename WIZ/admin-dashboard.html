@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Admin Dashboard – WIZ SALES</title>
+
+  <link rel="stylesheet" href="assets/css/global.css">
+  <link rel="icon" type="image/jpeg" href="https://files.catbox.moe/5fefg4.jpg">
+  <link rel="stylesheet" href="assets/css/admin-dashboard.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body class="dashboard-body">
+
+  <!-- MOBILE ADMIN MENU -->
+  <div class="mobile-admin-header glass-card">
+    <div class="mobile-admin-top">
+      <div class="mobile-brand">
+        <i class="fa-brands fa-shopify"></i>
+        <span>WIZ<span class="accent">SALES</span></span>
+      </div>
+  
+      <button id="mobileAdminToggle" class="mobile-admin-toggle">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  
+    <div id="mobileAdminNav" class="mobile-admin-nav hidden">
+      <a href="#dashboard">
+        <i class="fas fa-chart-line"></i> Dashboard
+      </a>
+      <a href="#products">
+        <i class="fas fa-box"></i> Products
+      </a>
+      <button id="mobileLogoutBtn" class="btn-primary">
+        <i class="fas fa-sign-out-alt"></i> Logout
+      </button>
+    </div>
+  </div>
+
+  <!-- TOP NAV - Simplified -->
+  <nav class="glass-card" style="margin:1rem; padding:1rem 1.5rem; display:flex; justify-content:space-between; align-items:center;">
+    <div style="display:flex; align-items:center; gap:10px; font-weight:800;">
+      <i class="fa-brands fa-shopify" style="color:var(--accent);"></i>
+      WIZ<span style="color:var(--accent);">SALES</span>
+    </div>
+    <button id="logoutBtn" class="btn-primary" style="padding:8px 16px;">
+      <i class="fas fa-sign-out-alt"></i> Logout
+    </button>
+  </nav>
+
+  <!-- MAIN -->
+  <main class="container">
+
+    <!-- DASHBOARD SECTION -->
+    <section id="dashboard" class="section">
+      <h2 class="mb-4">
+        <i class="fas fa-chart-line"></i> Dashboard
+      </h2>
+      <div class="stats" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1.2rem;">
+        <div class="glass-card card">
+          <h3>Total Products</h3>
+          <p id="totalProducts">--</p>
+        </div>
+        <div class="glass-card card">
+          <h3>Total Orders</h3>
+          <p id="totalOrders">--</p>
+        </div>
+        <div class="glass-card card">
+          <h3>Total Revenue</h3>
+          <p id="totalRevenue">--</p>
+        </div>
+        <div class="glass-card card">
+          <h3>Total Users</h3>
+          <p id="totalUsers">--</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRODUCTS SECTION -->
+    <section id="products" class="section" style="margin-top:3rem;">
+      <h2 class="mb-4">
+        <i class="fas fa-box"></i> Products
+      </h2>
+
+      <!-- PRODUCT FORM -->
+      <div class="glass-card" style="padding:1.5rem; margin-bottom:2rem;">
+        <form id="productForm">
+          <input type="text" id="prodName" placeholder="Product Name" required>
+          <input type="number" id="prodPrice" placeholder="Price" required>
+          <textarea id="prodDesc" placeholder="Description"></textarea>
+          
+          <input type="text" id="prodCat" placeholder="Category">
+          <input type="number" id="prodStock" placeholder="Stock" required>
+          <input type="number" id="prodDiscount" placeholder="Discount %" value="0">
+          
+          <input type="url" id="prodImageUrl" placeholder="Image URL" required>
+          
+          <select id="prodDisplayLocation" style="width:100%; padding:12px; margin:10px 0; border-radius:8px; border:1px solid #ddd;">
+            <option value="none">Regular Product</option>
+            <option value="featured">Featured Picks</option>
+            <option value="trending">Trending Now</option>
+            <option value="bestseller">Best Sellers</option>
+            <option value="special">Special Offer</option>
+          </select>
+
+          <button type="submit" class="btn-primary" style="margin-top:1rem; width:100%;">
+            <i class="fas fa-plus"></i> Add Product
+          </button>
+        </form>
+      </div>
+
+      <!-- PRODUCT LIST -->
+      <div id="productsList" class="glass-card" style="padding:1.5rem;">
+        Loading products...
+      </div>
+    </section>
+
+  </main>
+
+  <script type="module" src="admin.js"></script>
+</body>
+</html>
